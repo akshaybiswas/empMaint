@@ -16,28 +16,21 @@ import javax.faces.view.ViewScoped;
  *
  * @author dgrfiv
  */
-@Named(value = "viewAllProduct")
+@Named(value = "prodByEmployee")
 @ViewScoped
-public class ViewAllProduct implements Serializable {
+public class ProdByEmployee implements Serializable {
 
     /**
-     * Creates a new instance of ViewAllProduct
+     * Creates a new instance of ProdByEmployee
      */
     private List<ProductDTO> productDTOList;
     private ProductDTO selectedProd;
+    private int empId;
     
-    public void viewAllProduct() {
+    public void viewEmpByProduct() {
         EmpData empData = new EmpData();
-        productDTOList = empData.getAllProducts(); 
-    
+        productDTOList = empData.getProdByEmp(empId);
     }
-    
-    public String sortByProduct() {
-        System.out.println(selectedProd.getId());
-        return "/EmpByProduct?faces-redirect=true&prodId=" + selectedProd.getId();
-    }
-    
-    
 
     public List<ProductDTO> getProductDTOList() {
         return productDTOList;
@@ -55,5 +48,13 @@ public class ViewAllProduct implements Serializable {
         this.selectedProd = selectedProd;
     }
 
+    public int getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(int empId) {
+        this.empId = empId;
+    }
+    
     
 }

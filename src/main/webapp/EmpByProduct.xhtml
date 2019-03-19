@@ -22,6 +22,11 @@
                 <p:column headerText="Post">
                     <h:outputText value="#{emp.getPostName()}" />
                 </p:column>
+                <p:column headerText="Products">
+                    <p:commandLink value="Product Details" action="#{viewAllEmp.sortByEmployee()}">
+                        <f:setPropertyActionListener value="#{emp}" target="#{viewAllEmp.selectedEmp}" />
+                    </p:commandLink>
+                </p:column>
             </p:dataTable>
         </h:form>
     </ui:define>

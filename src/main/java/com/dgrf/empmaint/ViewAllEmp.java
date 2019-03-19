@@ -29,7 +29,7 @@ public class ViewAllEmp implements Serializable {
      * Creates a new instance of ViewAllEmp
      */
     private List<EmployeeDTO> empDTOList;
-    //private EmployeeDTO selectedEmp;
+    private EmployeeDTO selectedEmp;
 
     public void viewAllEmpData() {
 
@@ -57,6 +57,11 @@ public class ViewAllEmp implements Serializable {
         }
         
     }
+    
+    public String sortByEmployee() {
+        System.out.println(selectedEmp.getId());
+        return "/ProdByEmployee?faces-redirect=true&empId=" + selectedEmp.getId();
+    }
 
     public List<EmployeeDTO> getEmpDTOList() {
         return empDTOList;
@@ -65,4 +70,14 @@ public class ViewAllEmp implements Serializable {
     public void setEmpDTOList(List<EmployeeDTO> empDTOList) {
         this.empDTOList = empDTOList;
     }
+
+    public EmployeeDTO getSelectedEmp() {
+        return selectedEmp;
+    }
+
+    public void setSelectedEmp(EmployeeDTO selectedEmp) {
+        this.selectedEmp = selectedEmp;
+    }
+    
+    
 }
