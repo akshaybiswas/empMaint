@@ -11,6 +11,7 @@
         <f:metadata>
             <f:viewAction action="#{viewAllEmp.viewAllEmpData()}" immediate="true"/>
         </f:metadata>
+        <p:button style="margin-bottom:10px; font-size: 1.5rem;" value="Add Employee" outcome="AddNewEmp" ></p:button>
         <h:form>
             <p:dataTable var="emp" value="#{viewAllEmp.empDTOList}">
                 <p:column headerText="Employee Id">
@@ -27,9 +28,6 @@
                 </p:column>
                 <p:column headerText="Experience">
                     <h:outputText value="#{emp.getExp()}" />
-                </p:column>
-                <p:column headerText="Salary">
-                    <h:outputText value="#{emp.getSalary()}" />
                 </p:column>
                 <p:column headerText="Products">
                     <p:commandLink value="Product Details" action="#{viewAllEmp.sortByEmployee()}">

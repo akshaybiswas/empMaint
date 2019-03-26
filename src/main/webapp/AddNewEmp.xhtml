@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/template.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns="http://www.w3.org/1999/xhtml">
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewAction action="#{addNewEmp.fillDropdownValues()}" immediate="true"/>
+        </f:metadata>
+        <h:form enctype="multipart/form-data">
+            <br />
+            <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+            <p:panelGrid style="margin-bottom:10px; font-size: 1.5rem;"  columns="2" layout="grid" >
+
+                <p:outputLabel value="Employee Id:" />
+                <h:inputText value="#{addNewEmp.empId}" required="true" />
+
+                <p:outputLabel value="Employee Name:" />
+                <h:inputText value="#{addNewEmp.empName}" required="true" />
+
+                <p:outputLabel for="selectonepost" value="Select a Post:" />
+                <p:selectOneMenu id="selectonepost" value="#{addNewEmp.selectedEmpPostId}" required="true">
+                    <f:selectItems value="#{addNewEmp.postListMap}" />
+                </p:selectOneMenu>
+
+                <h:outputLabel for="products" value="Products:" />
+                <p:selectCheckboxMenu id="products" value="#{addNewEmp.selectedProdList}" label="Basic Packages" multiple="true"
+                                      filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                    <f:selectItems value="#{addNewEmp.productList}" />
+                </p:selectCheckboxMenu>
+            </p:panelGrid>
+
+            <div class="card" style="margin-bottom:10px; font-size: 1.5rem; width: 50rem;">
+                <p:commandButton value="Submit" action="#{addNewEmp.addNewEmployee()}"></p:commandButton>
+                <p:button value="Back" outcome="ViewAllEmp" />
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

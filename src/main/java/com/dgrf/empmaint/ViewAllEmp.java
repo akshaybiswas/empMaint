@@ -50,7 +50,6 @@ public class ViewAllEmp implements Serializable {
             empDTO.setPostId(edPK.getPostId());
             empDTO.setJoined(emps.get(i).getEmpJoined());
             empDTO.setExp(emps.get(i).getEmpExp());
-            empDTO.setSalary(emps.get(i).getEmpSalary());
             empDTO.setPostName(ep.getPostName());
 
             empDTOList.add(empDTO);
