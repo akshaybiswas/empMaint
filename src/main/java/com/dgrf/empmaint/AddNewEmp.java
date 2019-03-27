@@ -5,15 +5,13 @@
  */
 package com.dgrf.empmaint;
 
-import com.dgrf.empdev.DTO.EmployeeDTO;
-import com.dgrf.empdev.DTO.PostDTO;
-import com.dgrf.empdev.DTO.ProductDTO;
-import com.dgrf.empdev.DTO.ResponseCode;
-import com.dgrf.empdev.entities.ProductInfo;
-import com.org.empdev.EmpData;
+import org.dgrf.empdev.DTO.EmployeeDTO;
+import org.dgrf.empdev.DTO.PostDTO;
+import org.dgrf.empdev.DTO.ProductDTO;
+import org.dgrf.empdev.DTO.ResponseCode;
+import org.emp.bl.EmployeeDataService;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,8 +42,8 @@ public class AddNewEmp implements Serializable {
 
     public void fillDropdownValues() {
 
-        EmpData empData = new EmpData();
-        List<PostDTO> postDTOList = empData.getPostDTO();
+        EmployeeDataService empData = new EmployeeDataService();
+        List<PostDTO> postDTOList = empData.getAllPostDTO();
         postListMap = new HashMap<>();
 
         for (int i = 0; i < postDTOList.size(); i++) {
@@ -53,7 +51,7 @@ public class AddNewEmp implements Serializable {
         }
 
         productList = new ArrayList<>();
-        List<ProductDTO> productDTOList = empData.getProductDTO();
+        List<ProductDTO> productDTOList = empData.getAllProductDTO();
 
         for (int j = 0; j < productDTOList.size(); j++) {
             productList.add(new SelectItem(productDTOList.get(j).getId(), productDTOList.get(j).getName()));
@@ -73,7 +71,7 @@ public class AddNewEmp implements Serializable {
         employeeDTO.setName(empName);
         employeeDTO.setProductIdList(selectedProdList);
 
-        EmpData empData = new EmpData();
+        EmployeeDataService empData = new EmployeeDataService();
         responseCode = empData.addEmployee(employeeDTO);
 
         if (responseCode == ResponseCode.SUCCESS) {

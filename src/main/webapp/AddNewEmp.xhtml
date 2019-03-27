@@ -28,8 +28,8 @@
                 </p:selectOneMenu>
 
                 <h:outputLabel for="products" value="Products:" />
-                <p:selectCheckboxMenu id="products" value="#{addNewEmp.selectedProdList}" label="Basic Packages" multiple="true"
-                                      filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                <p:selectCheckboxMenu id="products" value="#{addNewEmp.selectedProdList}" label="Select Packages"
+                                      filter="true" filterMatchMode="startsWith" panelStyle="font-size:14px">
                     <f:selectItems value="#{addNewEmp.productList}" />
                 </p:selectCheckboxMenu>
             </p:panelGrid>

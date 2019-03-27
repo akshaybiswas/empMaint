@@ -5,14 +5,15 @@
  */
 package com.dgrf.empmaint;
 
-import com.dgrf.empdev.DAO.EmpPostsDAO;
-import com.dgrf.empdev.DTO.PostDTO;
-import com.dgrf.empdev.entities.EmpPost;
+import org.dgrf.empdev.DAO.EmpPostsDAO;
+import org.dgrf.empdev.DTO.PostDTO;
+import org.dgrf.empdev.entities.EmpPost;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import org.emp.bl.EmployeeDataService;
 
 /**
  *
@@ -29,23 +30,8 @@ public class ViewAllPosts implements Serializable{
     private PostDTO selectedPost;
 
     public void viewAllPostsData() {
-
-        EmpPostsDAO empPostsDAO = new EmpPostsDAO();
-        postDTOList = new ArrayList<>();
-
-        List<EmpPost> eps = empPostsDAO.findEmpPostEntities();
-
-        for (int i = 0; i < eps.size(); i++) {
-
-            PostDTO postDTO = new PostDTO();
-
-            postDTO.setId(eps.get(i).getPostId());
-            postDTO.setName(eps.get(i).getPostName());
-            postDTO.setGp(eps.get(i).getPostGp());
-
-            postDTOList.add(postDTO);
-        }
-        
+        EmployeeDataService eds = new EmployeeDataService();
+        postDTOList = eds.getAllPostDTO();
     }
     
     public String sortByPost() {

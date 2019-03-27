@@ -5,7 +5,7 @@
  */
 package com.dgrf.empmaint;
 
-import com.org.empdev.OverallCount;
+import org.emp.bl.OverallCount;
 import java.io.Serializable;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;

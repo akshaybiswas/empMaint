@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <f:metadata>
+            <f:viewParam name="employeePK" value="#"></f:viewParam>
+            <f:viewAction action="#" />
+        </f:metadata>
+
+        <h:form enctype="multipart/form-data">
+            <br />
+            <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+            <p:panelGrid style="margin-bottom:10px; font-size: 1.5rem; width: 50rem;"  columns="2" layout="grid" >
+
+                <h:outputLabel value="Employee Id:" />
+                <p:inputText value="#" disabled="true" required="true" />
+
+                <h:outputText value="Employee Name:" />
+                <p:inputText value="#" required="true" />
+                
+                <p:outputLabel for="selectonepost" value="Select a Post:" />
+                <p:selectOneMenu id="selectonepost" value="#" required="true">
+                    <f:selectItems value="#" />
+                </p:selectOneMenu>
+
+                <h:outputLabel for="products" value="Products:" />
+                <p:selectCheckboxMenu id="products" value="#" label="Select Packages"
+                                      filter="true" filterMatchMode="startsWith" panelStyle="font-size:14px">
+                    <f:selectItems value="#" />
+                </p:selectCheckboxMenu>
+
+                
+            </p:panelGrid>
+
+            <div class="card" style="margin-bottom:10px; font-size: 1.5rem;">
+                <p:commandButton value="Save" action="#"></p:commandButton>
+                <p:button value="Back" outcome="ViewAllEmp" />
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

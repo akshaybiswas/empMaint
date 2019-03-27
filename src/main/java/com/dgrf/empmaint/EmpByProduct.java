@@ -5,8 +5,8 @@
  */
 package com.dgrf.empmaint;
 
-import com.dgrf.empdev.DTO.EmployeeDTO;
-import com.org.empdev.EmpData;
+import org.dgrf.empdev.DTO.EmployeeDTO;
+import org.emp.bl.EmployeeDataService;
 import java.io.Serializable;
 import java.util.List;
 import javax.inject.Named;
@@ -28,7 +28,7 @@ public class EmpByProduct implements Serializable {
     private int prodId;
     
     public void viewEmpByProduct() {
-        EmpData empData = new EmpData();
+        EmployeeDataService empData = new EmployeeDataService();
         empDTOList  = empData.getEmpByProd(prodId);
     }
 
