@@ -2,14 +2,16 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./WEB-INF/template.xhtml"
-                xmlns:p="http://primefaces.org/ui"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns="http://www.w3.org/1999/xhtml">
 
     <ui:define name="content">
         <f:metadata>
-            <f:viewParam name="employeePK" value="#"></f:viewParam>
-            <f:viewAction action="#" />
+            <f:viewParam name="empId" value="#{updateEmp.empId}"></f:viewParam>
+            <f:viewParam name="empPid" value="#{updateEmp.empPid}"></f:viewParam>
+            <f:viewAction action="#{updateEmp.fillDropdownValues()}" />
         </f:metadata>
 
         <h:form enctype="multipart/form-data">
@@ -18,27 +20,25 @@
             <p:panelGrid style="margin-bottom:10px; font-size: 1.5rem; width: 50rem;"  columns="2" layout="grid" >
 
                 <h:outputLabel value="Employee Id:" />
-                <p:inputText value="#" disabled="true" required="true" />
+                <p:inputText value="#{updateEmp.empId}" disabled="true" required="true" />
 
                 <h:outputText value="Employee Name:" />
-                <p:inputText value="#" required="true" />
+                <p:inputText value="#{updateEmp.empName}" required="true" />
                 
                 <p:outputLabel for="selectonepost" value="Select a Post:" />
-                <p:selectOneMenu id="selectonepost" value="#" required="true">
-                    <f:selectItems value="#" />
+                <p:selectOneMenu id="selectonepost" value="#{updateEmp.selectedEmpPostId}" required="true">
+                    <f:selectItems value="#{updateEmp.postListMap}" />
                 </p:selectOneMenu>
 
                 <h:outputLabel for="products" value="Products:" />
-                <p:selectCheckboxMenu id="products" value="#" label="Select Packages"
+                <p:selectCheckboxMenu id="products" value="#{updateEmp.selectedProdList}" label="Select Packages" multiple="true"
                                       filter="true" filterMatchMode="startsWith" panelStyle="font-size:14px">
-                    <f:selectItems value="#" />
+                    <f:selectItems value="#{updateEmp.productList}" />
                 </p:selectCheckboxMenu>
-
-                
             </p:panelGrid>
 
             <div class="card" style="margin-bottom:10px; font-size: 1.5rem;">
-                <p:commandButton value="Save" action="#"></p:commandButton>
+                <p:commandButton value="Save" action="#{updateEmp.updateSelectedEmp()}"></p:commandButton>
                 <p:button value="Back" outcome="ViewAllEmp" />
             </div>
         </h:form>

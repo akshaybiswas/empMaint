@@ -42,6 +42,11 @@ public class ViewAllEmp implements Serializable {
         System.out.println(selectedEmp.getId());
         return "/ProdByEmployee?faces-redirect=true&empId=" + selectedEmp.getId();
     }
+    
+    public String editEmp() {
+        System.out.println(selectedEmp.getId());
+        return "UpdateEmp?faces-redirect=true&empId=" + selectedEmp.getId() +"&empPid=" + selectedEmp.getPostId();
+    }
 
     public List<EmployeeDTO> getEmpDTOList() {
         return empDTOList;
