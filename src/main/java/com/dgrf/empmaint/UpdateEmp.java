@@ -91,11 +91,11 @@ public class UpdateEmp implements Serializable {
         responseCode = employeeDataService.updateEmployee(employeeDTO);
 
         if (responseCode == 0) {
-            fm = new FacesMessage("User changes alert:", "User data changed Successfully.");
+            fm = new FacesMessage("Employee changes alert:", "Employee data changed Successfully.");
             context.addMessage(null, fm);
             return "ViewAllEmp?faces-redirect=true";
         } else {
-            fm = new FacesMessage("User changes alert:", "Either user not found or something went wrong.");
+            fm = new FacesMessage("Employee changes alert:", "Either Employee not found or something went wrong.");
             context.addMessage(null, fm);
             return "UpdateEmp?faces-redirect=true&empId=" + empId +"&empPid=" + empPid;
         }

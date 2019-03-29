@@ -36,6 +36,11 @@
                         <f:setPropertyActionListener value="#{emp}" target="#{viewAllEmp.selectedEmp}" />
                     </p:commandButton>
                 </p:column>
+                <p:column headerText="Actions">
+                    <p:commandButton value="Delete" action="#{viewAllEmp.deleteEmp()}">
+                        <f:setPropertyActionListener value="#{emp}" target="#{viewAllEmp.selectedEmp}" />
+                    </p:commandButton>
+                </p:column>
             </p:dataTable>
         </h:form>
     </ui:define>

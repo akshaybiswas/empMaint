@@ -14,6 +14,8 @@ import org.dgrf.empdev.entities.EmpPost;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import org.emp.bl.EmployeeDataService;
@@ -44,8 +46,38 @@ public class ViewAllEmp implements Serializable {
     }
     
     public String editEmp() {
-        System.out.println(selectedEmp.getId());
         return "UpdateEmp?faces-redirect=true&empId=" + selectedEmp.getId() +"&empPid=" + selectedEmp.getPostId();
+    }
+    
+    public String deleteEmp() {
+        //return "DeleteEmp?faces-redirect=true&empId=" + selectedEmp.getId() +"&empPid=" + selectedEmp.getPostId();
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        FacesMessage fm;
+        int responseCode;
+        int empId = selectedEmp.getId();
+        int empPid = selectedEmp.getPostId();
+        
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        employeeDTO.setId(empId);
+        employeeDTO.setPostId(empPid);
+        
+        EmployeeDataService employeeDataService = new EmployeeDataService();
+        responseCode = employeeDataService.deleteEmployee(employeeDTO);
+        
+        if (responseCode == 0) {
+            fm = new FacesMessage("Employee delete alert:", "Employee data deleted Successfully.");
+            context.addMessage(null, fm);
+            return "ViewAllEmp?faces-redirect=true";
+        } else if (responseCode == 1) {
+            fm = new FacesMessage("Employee delete alert:", "Either Employee not found.");
+            context.addMessage(null, fm);
+            return "ViewAllEmp?faces-redirect=true";
+        } else {
+            fm = new FacesMessage("Employee delete alert:", "Something went wrong, please contact admin.");
+            context.addMessage(null, fm);
+            return "ViewAllEmp?faces-redirect=true";
+        }
     }
 
     public List<EmployeeDTO> getEmpDTOList() {
