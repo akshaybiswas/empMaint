@@ -41,9 +41,6 @@ public class UpdateEmp implements Serializable {
     private Map<String, Integer> postListMap;
     private List<SelectItem> productList;
     
-    public UpdateEmp() {
-    }
-    
     public void fillDropdownValues() {
 
         EmployeeDataService empData = new EmployeeDataService();

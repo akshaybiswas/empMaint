@@ -10,6 +10,7 @@
         <f:metadata>
             <f:viewAction action="#{viewAllProduct.viewAllProduct()}" immediate="true"/>
         </f:metadata>
+        <p:button style="margin-bottom:10px; font-size: 1.5rem;" value="Add Product" outcome="AddNewProduct"></p:button>
         <h:form>
             <p:dataTable var="prod" value="#{viewAllProduct.productDTOList}">
                 <p:column headerText="Product Id">
@@ -23,8 +24,25 @@
                 <p:column headerText="Price">
                     <h:outputText value="#{prod.getPrice()}" />
                 </p:column>
+                <p:column headerText="Actions">
+                    <p:commandButton value="Edit" action="#{viewAllProduct.editProduct()}">
+                        <f:setPropertyActionListener value="#{prod}" target="#{viewAllProduct.selectedProd}" />
+                    </p:commandButton>
+                </p:column>
+                <p:column headerText="Action">
+                    <p:commandButton update=":deleteProduct" oncomplete="PF('delete').show()" value="Delete">
+                        <f:setPropertyActionListener value="#{prod}" target="#{viewAllProduct.selectedProd}" />
+                    </p:commandButton>
+                </p:column>
             </p:dataTable>
         </h:form>
+        <p:dialog header="Sure to delete" widgetVar="delete" style="font-size: 1.5rem;">
+            <h:form id="deleteProduct">
+                <p:commandButton oncomplete="PF('delete').hide()" value="Delete" action="#{viewAllProduct.deleteProduct()}" style="font-size: 1.5rem;">
+                   
+                </p:commandButton>
+            </h:form>
+        </p:dialog>
     </ui:define>
 
 </ui:composition>

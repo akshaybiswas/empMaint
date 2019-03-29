@@ -9,6 +9,8 @@ import org.dgrf.empdev.DTO.ProductDTO;
 import org.emp.bl.EmployeeDataService;
 import java.io.Serializable;
 import java.util.List;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 
@@ -33,11 +35,41 @@ public class ViewAllProduct implements Serializable {
     }
     
     public String sortByProduct() {
-        System.out.println(selectedProd.getId());
+        //System.out.println(selectedProd.getId());
         return "/EmpByProduct?faces-redirect=true&prodId=" + selectedProd.getId();
     }
     
+    public String editProduct() {
+        return "UpdateProduct?faces-redirect=true&prodId=" + selectedProd.getId();
+    }
     
+    public String deleteProduct() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.getExternalContext().getFlash().setKeepMessages(true);
+        FacesMessage fm;
+        int responseCode;
+        int prodId = selectedProd.getId();
+        
+        ProductDTO productDTO = new ProductDTO();
+        productDTO.setId(prodId);
+        
+        EmployeeDataService employeeDataService = new EmployeeDataService();
+        responseCode = employeeDataService.deleteProduct(productDTO);
+        
+        if (responseCode == 0) {
+            fm = new FacesMessage("Product delete alert:", "Product data deleted Successfully.");
+            context.addMessage(null, fm);
+            return "ViewAllProduct?faces-redirect=true";
+        } else if (responseCode == 1) {
+            fm = new FacesMessage("Product delete alert:", "Either Product not found.");
+            context.addMessage(null, fm);
+            return "ViewAllProduct?faces-redirect=true";
+        } else {
+            fm = new FacesMessage("Product delete alert:", "Something went wrong, please contact admin.");
+            context.addMessage(null, fm);
+            return "ViewAllProduct?faces-redirect=true";
+        }
+    }
 
     public List<ProductDTO> getProductDTOList() {
         return productDTOList;
@@ -54,6 +86,6 @@ public class ViewAllProduct implements Serializable {
     public void setSelectedProd(ProductDTO selectedProd) {
         this.selectedProd = selectedProd;
     }
-
+    
     
 }
