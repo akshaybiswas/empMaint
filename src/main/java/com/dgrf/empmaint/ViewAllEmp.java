@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import org.emp.bl.EmployeeDataService;
+import org.primefaces.model.LazyDataModel;
 
 /**
  *
@@ -25,12 +26,14 @@ public class ViewAllEmp implements Serializable {
     /**
      * Creates a new instance of ViewAllEmp
      */
-    private List<EmployeeDTO> empDTOList;
+    //private List<EmployeeDTO> empDTOList;
+    private LazyDataModel<EmployeeDTO> empDTOList;
     private EmployeeDTO selectedEmp;
 
     public void viewAllEmpData() { 
-        EmployeeDataService empData = new EmployeeDataService();
-        empDTOList = empData.getAllEmployeeDTO();   
+        empDTOList = new EmployeeLazyDataModel();
+        //EmployeeDataService empData = new EmployeeDataService();
+        //empDTOList = empData.getAllEmployeeDTO();   
         
     }
     
@@ -74,13 +77,14 @@ public class ViewAllEmp implements Serializable {
         }
     }
 
-    public List<EmployeeDTO> getEmpDTOList() {
+    public LazyDataModel<EmployeeDTO> getEmpDTOList() {
         return empDTOList;
     }
 
-    public void setEmpDTOList(List<EmployeeDTO> empDTOList) {
+    public void setEmpDTOList(LazyDataModel<EmployeeDTO> empDTOList) {
         this.empDTOList = empDTOList;
     }
+
 
     public EmployeeDTO getSelectedEmp() {
         return selectedEmp;
