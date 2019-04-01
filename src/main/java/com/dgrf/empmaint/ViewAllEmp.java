@@ -5,14 +5,8 @@
  */
 package com.dgrf.empmaint;
 
-import org.dgrf.empdev.DAO.EmpDataDAO;
-import org.dgrf.empdev.DAO.EmpPostsDAO;
 import org.dgrf.empdev.DTO.EmployeeDTO;
-import org.dgrf.empdev.entities.EmpDetails;
-import org.dgrf.empdev.entities.EmpDetailsPK;
-import org.dgrf.empdev.entities.EmpPost;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

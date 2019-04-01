@@ -10,6 +10,7 @@
         <f:metadata>
             <f:viewAction action="#{viewAllPosts.viewAllPostsData()}" immediate="true"/>
         </f:metadata>
+        <p:button style="margin-bottom:10px; font-size: 1.5rem;" value="Add Post" outcome="AddNewPost"></p:button>
         <h:form>
             <p:dataTable var="post" value="#{viewAllPosts.postDTOList}">
                 <p:column headerText="Post Id">

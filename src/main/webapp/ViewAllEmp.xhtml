@@ -13,7 +13,11 @@
         </f:metadata>
         <p:button style="margin-bottom:10px; font-size: 1.5rem;" value="Add Employee" outcome="AddNewEmp" ></p:button>
         <h:form>
-            <p:dataTable var="emp" value="#{viewAllEmp.empDTOList}">
+            <p:dataTable var="emp" value="#{viewAllEmp.empDTOList}" paginator="true" rows="3"
+             paginatorTemplate=
+                     "{RowsPerPageDropdown} {FirstPageLink}
+                     {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+             rowsPerPageTemplate="3,6,9" lazy="true">
                 <p:column headerText="Employee Id">
                     <h:outputText value="#{emp.getId()}" />
                 </p:column>
