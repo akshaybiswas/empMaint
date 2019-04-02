@@ -26,7 +26,6 @@ public class EmployeeLazyDataModel extends LazyDataModel<EmployeeDTO>{
   @Override
   public List<EmployeeDTO> load(int first, int pageSize, String sortField,
                              SortOrder sortOrder, Map<String, Object> filters) {
-      System.out.println("--------- gheu gheu -----------------"+first+"bheu "+pageSize);
       EmployeeDataService employeeDataService = new EmployeeDataService();
       List<EmployeeDTO> list = employeeDataService.getAllEmployeeDTO(first, pageSize);
       return list;
